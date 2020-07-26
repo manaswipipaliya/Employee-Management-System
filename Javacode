@@ -1,0 +1,252 @@
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile; 
+import java.lang.NumberFormatException; 
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+class Employee
+{
+	protected int emp_ID;
+	protected String emp_name;
+	//protected int salary;
+    public Employee(String emp_name,int emp_ID)
+	{
+		this.emp_name=emp_name;
+		this.emp_ID=emp_ID;
+		//this.salary=salary;
+	}
+	
+	
+}
+class manager extends Employee
+{
+	int Bonus;
+	public manager(String emp_name,int emp_ID)
+	{
+		super(emp_name,emp_ID);
+		//mthis.Bonus=Bonus;
+	}
+	void addFriend()
+	{
+		try{ File file1=new File("manager.txt");
+			if(!file1.exists())
+				file1.createNewFile();
+			RandomAccessFile raf= new RandomAccessFile(file1, "rw"); 
+            boolean found = false;
+				String Name,name;
+				int index;
+			while (raf.getFilePointer() < raf.length()) { 
+			name=raf.readLine();
+			index = name.indexOf('!'); 
+			//index2=name.lastIndexOf('!');
+			Name=name.substring(0,index);
+			String emp_id;
+			emp_id=String.valueOf(emp_ID);
+			emp_id=name.substring(index+1);
+			//String pk;//=Strinf.valueOf(perks);
+			//pk=name.substring(index2+1);
+			 if (emp_id.equals(String.valueOf(emp_ID))) { 
+                    found = true; 
+                    break; 
+			 }
+			}
+			 if (found == false) { 
+			    raf.writeBytes(emp_name+'!'+emp_ID);
+				raf.writeBytes(System.lineSeparator()); 
+				System.out.println("record added");
+					raf.close();
+			 }
+		}
+		catch (IOException ioe) { 
+  
+            System.out.println(ioe); 
+        } 
+        catch (NumberFormatException nef) { 
+  
+            System.out.println(nef); 
+        } 
+			
+	}
+	void viewRecord()
+	 {
+		 String nameNumberString; 
+			int index; 
+			String name=new String();
+			String emp_id=new String();
+			
+			
+				System.out.println("---------------------");
+				System.out.println("ID            name   ");
+				System.out.println("---------------------");
+		try{RandomAccessFile raf = new RandomAccessFile("manager.txt", "rw"); 
+			while (raf.getFilePointer() < raf.length())
+			{
+				nameNumberString = raf.readLine(); 
+				//System.out.println(nameNumberString);
+				index = nameNumberString.indexOf('!');
+				
+				
+				name = nameNumberString 
+						.substring(0, index); 
+				
+				emp_id=nameNumberString 
+						.substring(index+1);
+				
+				
+				
+				
+				System.out.println(emp_id+"            "+name);
+				
+					
+				 
+			}
+		}catch (FileNotFoundException e){
+			System.out.println("error occurred");
+			e.printStackTrace();
+		}catch (IOException f){
+			System.out.println("an error occurred");
+			f.printStackTrace();
+		}catch (StringIndexOutOfBoundsException siobe){
+			System.out.println("");
+	
+	}
+	 }
+	
+}
+
+	
+class Programmer extends Employee
+{
+	int Perks;
+	public Programmer(String emp_name,int emp_ID)
+	{
+		super(emp_name,emp_ID);
+		//this.Perks=Perks;
+	}
+	void addFriend()
+	{
+		try{ File file2=new File("programmer.txt");
+			if(!file2.exists())
+				file2.createNewFile();
+			RandomAccessFile raf= new RandomAccessFile(file2, "rw"); 
+            boolean found = false;
+				String Name,name;
+				int index;
+			while (raf.getFilePointer() < raf.length()) { 
+			name=raf.readLine();
+			index = name.indexOf('!'); 
+			//index2=name.lastIndexOf('!');
+			Name=name.substring(0,index);
+			String emp_id;
+			emp_id=String.valueOf(emp_ID);
+			emp_id=name.substring(index+1);
+			//String pk;//=Strinf.valueOf(perks);
+			//pk=name.substring(index2+1);
+			 if (emp_id.equals(String.valueOf(emp_ID))) { 
+                    found = true; 
+                    break; 
+			 }
+			}
+			 if (found == false) { 
+			    raf.writeBytes(emp_name+'!'+emp_ID);
+				raf.writeBytes(System.lineSeparator()); 
+				System.out.println("record added");
+					raf.close();
+			 }
+		}
+		catch (IOException ioe) { 
+  
+            System.out.println(ioe); 
+        } 
+        catch (NumberFormatException nef) { 
+  
+            System.out.println(nef); 
+        } 
+			
+	}
+     void viewRecord()
+	 {
+		 String nameNumberString; 
+			int index; 
+			String name=new String();
+			String emp_id=new String();
+			
+			
+				System.out.println("---------------------");
+				System.out.println("ID            name   ");
+				System.out.println("---------------------");
+		try{RandomAccessFile raf = new RandomAccessFile("programmer.txt", "rw"); 
+			while (raf.getFilePointer() < raf.length())
+			{
+				nameNumberString = raf.readLine(); 
+				//System.out.println(nameNumberString);
+				index = nameNumberString.indexOf('!');
+				
+				
+				name = nameNumberString 
+						.substring(0, index); 
+				
+				emp_id=nameNumberString 
+						.substring(index+1);
+				
+				
+				
+				
+				System.out.println(emp_id+"            "+name);
+				
+					
+				 
+			}
+		}catch (FileNotFoundException e){
+			System.out.println("error occurred");
+			e.printStackTrace();
+		}catch (IOException f){
+			System.out.println("an error occurred");
+			f.printStackTrace();
+		}catch (StringIndexOutOfBoundsException siobe){
+			System.out.println("");
+	
+	}
+	 }
+}
+class EmploymentManagementSys
+{
+	public static void main(String args[])
+	{	
+		
+		
+		
+		Scanner q=new Scanner(System.in);
+			String name=new String();
+			int id;
+		
+		System.out.println("enter your name");
+		name=q.next();
+		System.out.println("enter your id");
+		id=q.nextInt();
+		
+		System.out.println("are you a programmer or manager");
+		String s;
+		s=q.next();
+		if(s.equals("programmer"))
+		{
+			//System.out.println("enter your perks");
+			//perks=q.nextInt();
+			Programmer p=new Programmer(name,id);
+			p.addFriend();
+			p.viewRecord();
+			
+		}
+		else
+		{
+			//System.out.println("enter your bonus");
+			//bonus=q.nextInt();
+			manager m=new manager(name,id);
+			m.addFriend();
+			m.viewRecord();
+		}
+		
+		
+		
+	}
+}
